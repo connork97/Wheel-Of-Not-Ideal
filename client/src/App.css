@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.clubDropdownsWrapperDiv {
+  margin: 5rem auto;
+  display: flex;
+  justify-content: space-evenly;
+
+}
