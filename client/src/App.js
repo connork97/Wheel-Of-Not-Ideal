@@ -8,6 +8,7 @@ import Wheel from './components/Wheel';
 
 function App() {
 
+  // const [activeClubs, setActiveClubs] = useState(['Ideal', 'Not Ideal', 'Driver', 'Putter', 'Sand Wedge', 'Pitching Wedge', '9 Iron', '8 Iron'])
   const [activeClubs, setActiveClubs] = useState(['Ideal', 'Not Ideal', 'Driver', 'Putter', 'Sand Wedge', 'Pitching Wedge', '9 Iron', '8 Iron', '7 Iron', '6 Iron'])
 
   const woodsAndHybrids = ['3 Wood', '5 Wood', '1 Hybrid', '2 Hybrid', '3 Hybrid', '4 Hybrid', '5 Hybrid'];
