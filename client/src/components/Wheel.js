@@ -1,30 +1,57 @@
 // import styles from './Wheel.module.css';
+import Club from './Club';
 import React, { useRef, useState, useEffect } from 'react';
 
 const Wheel = ({activeClubs}) => {
+
+    const [spinValue, setSpinValue] = useState(0);
+    const [rotation, setRotation] = useState(0);
+    const wheelRef = useRef(null);
+
+    // let allClubs;
+
+    // useEffect(() => {
+    //     console.log('rendering clubs');
+    //     allClubs = activeClubs.map((club, index) => {
+    //         return <p key={index}>{club}</p>;
+    //     });        
+    // }, [activeClubs])
+
+    
+        const renderActiveClubs = () => {
+            // setActiveClubs([...activeClubs, 'New Club']); // State update inside render function
+            console.log('start', activeClubs)
+            return activeClubs.map((club, index) => {
+                return <Club key={index} club={club}></Club>;
+            });
+        };
+    
+    
+    
+    return (
+        <div className="wheelContainer">
+            <div className="spinBtn" style={{ transform: `rotate(${rotation}deg)` }}>Send It!</div>
+            <div className="wheel" ref={wheelRef}>
+                {renderActiveClubs()}
+            </div>
+        </div>
+    )
+}
+
+export default Wheel;
+
+// let clubs = ['Putter', 'Driver', '9 Iron', '8 Iron', '7 Iron', '6 Iron', 'Pitching Wedge', 'Sand Wedge', 'Ideal', 'Not Ideal'];
 
     // let wheel = document.querySelector(".wheel");
     // let spinBtn = document.querySelector(".spinBtn");
 
 
 
-    const [spinValue, setSpinValue] = useState(0);
-    const [rotation, setRotation] = useState(0);
-    const wheelRef = useRef(null);
-
     // useEffect(() => {
     //     console.log(spinValue);
     //     // setSpinValue(Math.ceil(Math.random() * 3600));
     //     console.log(spinValue);
     // }, [])
-    const renderActiveClubs = () => {
-        // setActiveClubs([...activeClubs, 'New Club']); // State update inside render function
-        console.log('start')
-        activeClubs.map((club, index) => {
-            return <p key={index}>{club}</p>;
-        });
-    };
-
     // const spinWheel = () => {
     //     const wheel = wheelRef.current;
     //     const newRotation = Math.ceil(Math.random() * 360);
@@ -57,16 +84,3 @@ const Wheel = ({activeClubs}) => {
     //         document.getElementById('submit').click();
     //     }
     // });
-    let clubs = ['Putter', 'Driver', '9 Iron', '8 Iron', '7 Iron', '6 Iron', 'Pitching Wedge', 'Sand Wedge', 'Ideal', 'Not Ideal'];
-
-    return (
-        <div class="wheelContainer">
-            <div className="spinBtn" style={{ transform: `rotate(${rotation}deg)` }}>Send It!</div>
-            <div className="wheel" ref={wheelRef}>
-                {renderActiveClubs()}
-            </div>
-        </div>
-    )
-}
-
-export default Wheel;

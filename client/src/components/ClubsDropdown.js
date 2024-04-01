@@ -13,7 +13,7 @@ const ClubsDropdown = ({clubs, setActiveClubs}) => {
             setDropdownText('Irons');
         } else if (clubs[0] === 'Gap Wedge') {
             setDropdownText('Wedges');
-        }
+        } else return;
     }, []);
 
     const addClub = (club) => {
@@ -24,7 +24,7 @@ const ClubsDropdown = ({clubs, setActiveClubs}) => {
 
     const renderClubOptions = () => {
         return clubs.map((club, index) => (
-            <Dropdown.Item key={index} href="#/action-1" onClick={addClub(club)}>
+            <Dropdown.Item key={index} onClick={() => addClub(club)}>
                 {club}
             </Dropdown.Item>
         ));
