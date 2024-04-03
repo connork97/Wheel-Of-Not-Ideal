@@ -6,6 +6,7 @@ const Wheel = ({ activeClubs }) => {
     const [spinValue, setSpinValue] = useState(0);
     const [rotation, setRotation] = useState(0);
     const wheelRef = useRef(null);
+    const wheelContainerRef = useRef(null);
 
     // Calculate the angle between each club
     const angleIncrement = 360 / activeClubs.length;
@@ -28,8 +29,19 @@ const Wheel = ({ activeClubs }) => {
         });
     };
 
+    const spinWheel = () => {
+        // wheelContainerRef.style = {{transform: `rotate(" + spinValue + "deg)`}};
+        setSpinValue(spinValue + Math.ceil(Math.random() * 3600));
+
+    }
+
     return (
-        <div className={styles.wheelContainer}>
+        <div
+            className={styles.wheelContainer}
+            ref={wheelContainerRef}
+            onClick={() => spinWheel()}
+            style={{ transform: `rotate(${spinValue}deg)` }}
+        >
             <div className={styles.spnBtn}>
                 <span>Send It!</span>
             </div>
