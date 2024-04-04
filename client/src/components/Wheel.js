@@ -11,10 +11,20 @@ const Wheel = ({ activeClubs }) => {
     // Calculate the angle between each club
     const angleIncrement = 360 / activeClubs.length;
 
+    // const calculateClipPath = (index, totalOptions) => {
+    //     const angle = 360 / totalOptions;
+    //     const startAngle = index * angle;
+    //     const endAngle = (index + 1) * angle;
+    //     const clipPathPoints = `0% 0%, 50% 50%, 0% 100%, 0 0`;
+    //     // For simplicity, assuming a triangle shape here, adjust as needed
+    //     return `polygon(${clipPathPoints})`;
+    //   };
     const renderActiveClubs = () => {
         return activeClubs.map((club, index) => {
             // Calculate the rotation for each club
             // const clubRotation = (index + 1) * angleIncrement;
+            const colors = ['teal', 'gold', 'green', 'blue', 'purple', 'pink', 'brown', 'black', 'red', 'magenta', 'navy', 'salmon', 'olive', 'maroon', 'coral', 'grey']
+
             return (
                 <Club
                     // className={styles.club}
@@ -23,6 +33,15 @@ const Wheel = ({ activeClubs }) => {
                     angleIncrement={angleIncrement}
                     club={club}
                     activeClubs={activeClubs}
+                    // calculateClipPath={calculateClipPath}
+                    // clipPath={calculateClipPath(index, activeClubs.length)}
+                    backgroundColor={colors[index]}
+
+                    style={{
+                        // clipPath: calculateClipPath(index, activeClubs.length),
+
+                        // clipPath: `polygon(0 0, ${1 / activeClubs.length * 100 / 2}% 0, 50% 50%, 0 ${1 / activeClubs.length * 100 / 2}%)`,
+                    }}
                     // style={{ transform: `rotate(${clubRotation}deg)` }}
                 ></Club>
             );
@@ -39,13 +58,18 @@ const Wheel = ({ activeClubs }) => {
         <div
             className={styles.wheelContainer}
             ref={wheelContainerRef}
-            onClick={() => spinWheel()}
-            style={{ transform: `rotate(${spinValue}deg)` }}
         >
-            <div className={styles.spnBtn}>
-                <span>Send It!</span>
+            <div 
+                className={styles.spinBtn}
+                onClick={() => spinWheel()}
+            >
+                Send It!
             </div>
-            <div className={styles.wheel} ref={wheelRef}>
+            <div
+                className={styles.wheel} 
+                ref={wheelRef}
+                style={{ transform: `rotate(${spinValue}deg)` }}
+            >
                 {renderActiveClubs()}
             </div>
         </div>
